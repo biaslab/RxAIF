@@ -1,1 +1,8 @@
 .ipynb_checkpoints
+
+/examples/maze
+/examples/mine
+/examples/t_maze/visualizations.jl
+/test
+T-maze*
+Policy*

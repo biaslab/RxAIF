@@ -1,4 +1,4 @@
-This repository contains the source code for the simulations performed in Part I and II of the "Realising Synthetic Active Inference Agents" paper series. Simulations are performed with Jupyter Notebook, Julia and RxInfer. Original figures can be regenerated from the `v0.1.0` release of this repository.
+This package defines nodes, updates and demos specific to reactive implementations of Active Inference.
 
 # Install Julia
 In order to install the Julia language (`v1.10.4`), follow the platform-specific instructions at https://julialang.org/downloads/
@@ -21,16 +21,20 @@ Next, activate the virtual environment
 ```
 and instantiate the required packages
 ```
-(LAIF) pkg> instantiate
+(RxAIF) pkg> instantiate
 ```
 This will download and install the required packages in the virtual environment named LAIF.
 
 # Run the demos
 Exit Julia, navigate to the root directory and start a Jupyter server
 ```
-~/LAIF$ jupyter notebook
+~/RxAIF$ jupyter notebook
 ```
 A browser window should open, and you can select the demo you wish to run.
+
+# References
+- Koudahl, van de Laar & De Vries (2023). Realising Synthetic Active Inference Agents, Part I: Epistemic Objectives and Graphical Specification Language. arXiv preprint arXiv:2306.08014.
+- van de Laar, Koudahl, & De Vries (2024). Realizing Synthetic Active Inference Agents, Part II: Variational Message Updates. Neural Computation.
 
 # License
 MIT License, Copyright (c) 2024 BIASlab http://biaslab.org
