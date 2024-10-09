@@ -28,13 +28,11 @@ end
                                             meta::GeneralizedMeta{Missing}) = begin
     log_d    = clamplog.(probvec(m_x))
     log_c    = mean(BroadcastFunction(log), q_c)
-    x_0      = probvec(q_x)
     (A, h_A) = mean_h(q_A)
     (N, M)   = size(A)
 
     # Root-finding problem for marginal statistics
-    g(x)  = x - softmax(-h_A + A'*log_c - A'*clamplog.(A*x) + log_d)
-    L(xi) = g(softmax(xi))
+    L(xi) = log_d - h_A + A'*log_c - A'*clamplog.(A*softmax(xi)) - xi
     J(xi) = jacobian(L, xi)
 
     xi_k = zeros(M)

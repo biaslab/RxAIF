@@ -8,7 +8,7 @@ using TupleTools: deleteat
 using ReactiveMP: FunctionalDependencies, messagein, setmessage!, getlocalclusters, clusterindex, getmarginals
 using Base.Broadcast: BroadcastFunction
 using BayesBase: AbstractContinuousGenericLogPdf
-using LogExpFunctions: xlogx
+using LogExpFunctions: xlogx, logsumexp
 using StatsFuns: softmax
 
 import ReactiveMP: functional_dependencies

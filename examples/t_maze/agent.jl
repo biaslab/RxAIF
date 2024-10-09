@@ -8,7 +8,7 @@ function initializeAgent(params, stats)
                     initialization = init_marginals(),
                     iterations     = 50,
                     returnvars     = (u = KeepLast(),),
-                    free_energy    = false)
+                    free_energy    = false)  # TODO: free energy does not work under PointMass constraint
 
         return pol_t = mean.(res.posteriors[:u])
     end
