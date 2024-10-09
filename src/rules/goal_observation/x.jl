@@ -26,21 +26,24 @@ end
                                             q_x::Union{Bernoulli, Categorical},
                                             q_A::Union{SampleList, MatrixDirichlet, PointMass}, 
                                             meta::GeneralizedMeta{Missing}) = begin
-    d        = probvec(m_x)
+    log_d    = clamplog.(probvec(m_x))
     log_c    = mean(BroadcastFunction(log), q_c)
     x_0      = probvec(q_x)
     (A, h_A) = mean_h(q_A)
+    (N, M)   = size(A)
 
     # Root-finding problem for marginal statistics
-    g(x) = x - softmax(-h_A + A'*log_c - A'*clamplog.(A*x) + clamplog.(d))
+    g(x)  = x - softmax(-h_A + A'*log_c - A'*clamplog.(A*x) + log_d)
+    L(xi) = g(softmax(xi))
+    J(xi) = jacobian(L, xi)
 
-    x_k = deepcopy(x_0)
+    xi_k = zeros(M)
     for k=1:meta.newton_iterations
-        x_k = x_k - inv(jacobian(g, x_k))*g(x_k) # Newton step for multivariate root finding
+        xi_k = xi_k - pinv(J(xi_k))*L(xi_k) # Newton step for multivariate root finding
     end
 
     # Compute outbound message statistics
-    rho = softmax(clamplog.(x_k) - log.(d .+ 1e-6))
+    rho = softmax(xi_k - log_d)
 
     return Categorical(rho)
 end

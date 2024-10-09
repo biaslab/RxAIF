@@ -1,7 +1,6 @@
 export GoalObservation
 export BetheMeta, GeneralizedMeta
 export BethePipeline, GeneralizedPipeline
-export softmax
 
 
 struct GoalObservation end
@@ -16,12 +15,6 @@ struct GoalObservation end
 h(A) = -diag(A'*clamplog.(A))
 
 mean_h(d::PointMass) = (d.point, h(d.point))
-
-function softmax(x::Vector)
-    r = x .- maximum(x)
-    clamp!(r, -100,0.0)
-    exp.(r) ./ sum(exp.(r))
-end
 
 
 #----------

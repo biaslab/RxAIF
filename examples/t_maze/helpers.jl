@@ -1,4 +1,6 @@
 using LinearAlgebra
+using StatsFuns: softmax
+
 
 function constructABCD(α::Float64, c::Float64)
     # Observation model

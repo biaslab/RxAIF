@@ -9,6 +9,7 @@ using ReactiveMP: FunctionalDependencies, messagein, setmessage!, getlocalcluste
 using Base.Broadcast: BroadcastFunction
 using BayesBase: AbstractContinuousGenericLogPdf
 using LogExpFunctions: xlogx
+using StatsFuns: softmax
 
 import ReactiveMP: functional_dependencies
 import DomainSets: dimension, in
